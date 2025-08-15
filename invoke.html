@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Invocation test
+        </title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <input id="invoke" placeholder="https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&titles=Cat&prop=extracts&exintro=true"/><button onclick="invoke(document.getElementById('invoke').value);">invoke</button>
+        <div id="out">
+
+        </div>
+    </body>
+    <script>
+        function invoke(l) {
+            document.getElementById("out").innerHTML = fetch(l)
+              .then(res => res.json())
+              .then(data => {
+                const page = Object.values(data.query.pages)[0];
+              });
+        }
+    </script>
+</html>
