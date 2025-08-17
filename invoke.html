@@ -10,8 +10,10 @@
         <input id="invoke" placeholder="https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&titles=Cat&prop=extracts&exintro=true"/><button onclick="invoke(document.getElementById('invoke').value);">invoke</button>
         <div id="out">
             Page: https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&titles=Cat&prop=extracts
-            
+            <br/>
             Revision: https://en.wikipedia.org/w/api.php?action=query&prop=revisions&revids=1288803099|1288803242&rvprop=content&format=json&origin=*
+            <br/>
+            User contributions: https://en.wikipedia.org/w/api.php?action=query&list=usercontribs&ucuser=Faster+than+Thunder&uclimit=10&ucprop=ids|title|timestamp|comment&format=json&origin=*
         </div>
     </body>
     <script>
@@ -29,6 +31,16 @@
                     const content1 = rev1['*'];
                     const content2 = rev2['*'];
                     document.getElementById("out").innerHTML = content1 + "<hr/>" + content2;
+                } else if (l.includes("&list=usercontribs")) {
+                const contributions = data.query.usercontribs;
+                document.getElementById("out").innerHTML = "";
+                contributions.forEach(contrib => {
+                  document.getElementById("out").innerHTML += (`Page: ${contrib.title}`);
+                  document.getElementById("out").innerHTML += (`Rev ID: ${contrib.revid}`);
+                  document.getElementById("out").innerHTML += (`Timestamp: ${contrib.timestamp}`);
+                  document.getElementById("out").innerHTML += (`Comment: ${contrib.comment}`);
+                  document.getElementById("out").innerHTML += ('---');
+                });
                 } else {
                     document.getElementById("out").innerHTML = "Invalid URL.";
                 }
