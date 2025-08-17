@@ -19,10 +19,10 @@
             fetch(l)
               .then(res => res.json())
               .then(data => {
-                if(l.includes("action=query")) {
+                if(l.includes("&titles=")) {
                     const page = Object.values(data.query.pages)[0];
                     document.getElementById("out").innerHTML = page.extract;
-                } else if (l.includes("action=compare")) {
+                } else if (l.includes("&revids=")) {
                     const pages = Object.values(data.query.pages);
                     console.log(pages);
                     const [rev1, rev2] = pages[0].revisions;
