@@ -24,7 +24,7 @@
                     document.getElementById("out").innerHTML = page.extract;
                 } else if (l.includes("action=compare")) {
                     const diffHtml = data.compare;
-                    document.getElementById("out").innerHTML = page['*'];
+                    document.getElementById("out").innerHTML = diffHtml['*'];
                 } else {
                     document.getElementById("out").innerHTML = "Invalid URL.";
                 }
