@@ -24,6 +24,7 @@
                     document.getElementById("out").innerHTML = page.extract;
                 } else if (l.includes("action=compare")) {
                     const pages = Object.values(data.query.pages);
+                    console.log(pages);
                     const [rev1, rev2] = pages[0].revisions;
                     const content1 = rev1['*'];
                     const content2 = rev2['*'];
