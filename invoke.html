@@ -23,8 +23,11 @@
                     const page = Object.values(data.query.pages)[0];
                     document.getElementById("out").innerHTML = page.extract;
                 } else if (l.includes("action=compare")) {
-                    const diffHtml = data.compare;
-                    document.getElementById("out").innerHTML = diffHtml['*'];
+                    const pages = Object.values(data.query.pages);
+                    const [rev1, rev2] = pages[0].revisions;
+                    const content1 = rev1['*'] || rev1.content;
+                    const content2 = rev2['*'] || rev2.content;
+                    document.getElementById("out").innerHTML = content1 + "<hr/>" + content2;
                 } else {
                     document.getElementById("out").innerHTML = "Invalid URL.";
                 }
