@@ -11,7 +11,7 @@
         <div id="out">
             Page: https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&titles=Cat&prop=extracts
             
-            Revision: https://en.wikipedia.org/w/api.php?action=compare&fromrev=1288803099&torev=1288803242&format=json&origin=*
+            Revision: https://en.wikipedia.org/w/api.php?action=query&prop=revisions&revids=1288803099|1288803242&rvprop=content&format=json&origin=*
         </div>
     </body>
     <script>
@@ -25,8 +25,8 @@
                 } else if (l.includes("action=compare")) {
                     const pages = Object.values(data.query.pages);
                     const [rev1, rev2] = pages[0].revisions;
-                    const content1 = rev1['*'] || rev1.content;
-                    const content2 = rev2['*'] || rev2.content;
+                    const content1 = rev1['*'];
+                    const content2 = rev2['*'];
                     document.getElementById("out").innerHTML = content1 + "<hr/>" + content2;
                 } else {
                     document.getElementById("out").innerHTML = "Invalid URL.";
